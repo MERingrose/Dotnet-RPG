@@ -13,14 +13,32 @@ namespace Dotnet_RPG.Controllers
         private static List<Character> characters = new List<Character>()
         {
             new Character(),
-            new Character{Name = "Mark"}
-        };
+            new Character{
+            Name = "Mark",
+            HitPoints = 150,
+            Strength = 20,
+            Defense = 20,
+            Intelligence = 5,
+        Class = RPGClass.Knight
+    }
+
+    };
+
+
 
         [HttpGet]
+        [Route("GetAll")]
         public ActionResult<List<Character>> Get()
         {
             return Ok(characters);
         }
+
+        [HttpGet]
+        public ActionResult<Character> GetSingle()
+        {
+
+            return Ok(characters[0]);
+        }    
 
     }
 }
