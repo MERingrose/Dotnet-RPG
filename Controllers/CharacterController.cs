@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Dotnet_RPG.Models;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Dotnet_RPG.Controllers
 
@@ -14,31 +15,37 @@ namespace Dotnet_RPG.Controllers
         {
             new Character(),
             new Character{
+            Id = 1,
             Name = "Mark",
             HitPoints = 150,
             Strength = 20,
             Defense = 20,
             Intelligence = 5,
-        Class = RPGClass.Knight
+            Class = RPGClass.Knight
     }
 
     };
 
 
 
-        [HttpGet]
-        [Route("GetAll")]
+        [HttpGet("GetAll")]
         public ActionResult<List<Character>> Get()
         {
             return Ok(characters);
         }
 
-        [HttpGet]
-        public ActionResult<Character> GetSingle()
+        [HttpGet("{id}")]
+        public ActionResult<Character> GetSingle(int id)
         {
+            return Ok(characters.FirstOrDefault(c => c.Id == id));
+        }
 
-            return Ok(characters[0]);
-        }    
+        [HttpPost]
+        public ActionResult<List<Character>> AddCharacter(Character newCharacter)
+        {
+            characters.Add(newCharacter);
+            return Ok(characters);
+        }
 
     }
 }
