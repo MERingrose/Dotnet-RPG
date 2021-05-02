@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Dotnet_RPG.Models;
 using System.Collections.Generic;
 using System.Linq;
+using Dotnet_RPG.Services.CharacterService;
 
 namespace Dotnet_RPG.Controllers
 
@@ -11,40 +12,30 @@ namespace Dotnet_RPG.Controllers
     [Route("[controller]")]
     public class CharacterController : ControllerBase
     {
-        private static List<Character> characters = new List<Character>()
+        private readonly ICharacterServices _characterServices;
+
+        public CharacterController(ICharacterServices characterServices)
         {
-            new Character(),
-            new Character{
-            Id = 1,
-            Name = "Mark",
-            HitPoints = 150,
-            Strength = 20,
-            Defense = 20,
-            Intelligence = 5,
-            Class = RPGClass.Knight
-    }
-
-    };
-
-
+            _characterServices = characterServices;
+        }
 
         [HttpGet("GetAll")]
-        public ActionResult<List<Character>> Get()
+        public async Task<ActionResult<List<Character>>> Get()
         {
-            return Ok(characters);
+            return Ok(await _characterServices.GetAllCharacters());
         }
 
         [HttpGet("{id}")]
-        public ActionResult<Character> GetSingle(int id)
+        public async Task<ActionResult<Character>> GetSingle(int id)
         {
-            return Ok(characters.FirstOrDefault(c => c.Id == id));
+            return Ok(await _characterServices.GetCharacterById(id));
         }
 
         [HttpPost]
-        public ActionResult<List<Character>> AddCharacter(Character newCharacter)
+        public async Task<ActionResult<List<Character>>> AddCharacter(Character newCharacter)
         {
-            characters.Add(newCharacter);
-            return Ok(characters);
+            _characterServices.AddCharacter(newCharacter);
+            return Ok(await _characterServices.GetAllCharacters());
         }
 
     }

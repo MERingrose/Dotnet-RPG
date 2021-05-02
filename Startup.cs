@@ -11,6 +11,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Dotnet_RPG.Services.CharacterService;
+using Dotnet_RPG.Controllers;
 
 namespace Dotnet_RPG
 {
@@ -32,6 +34,7 @@ namespace Dotnet_RPG
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Dotnet_RPG", Version = "v1" });
             });
+            services.AddScoped<ICharacterServices, CharacterServices>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
