@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Dotnet_RPG.Models;
 using System.Threading.Tasks;
-using Dotnet_RPG.DTOs;
+using Dotnet_RPG.DTOs.Character;
 
 namespace Dotnet_RPG.Services.CharacterService
 

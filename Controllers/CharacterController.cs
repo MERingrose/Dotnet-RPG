@@ -1,10 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Dotnet_RPG.Models;
-using Dotnet_RPG.DTOs;
 using System.Collections.Generic;
 using System.Linq;
 using Dotnet_RPG.Services.CharacterService;
 using System.Threading.Tasks;
+using Dotnet_RPG.DTOs.Character;
 
 namespace Dotnet_RPG.Controllers
 
