@@ -13,13 +13,22 @@ namespace Dotnet_RPG.Services.CharacterService
         {
             new Character(),
             new Character{
-            Id = 1,
-            Name = "Mark",
-            HitPoints = 150,
-            Strength = 20,
-            Defense = 20,
-            Intelligence = 5,
-            Class = RPGClass.Knight
+                Id = 1,
+                Name = "Mark",
+                HitPoints = 150,
+                Strength = 20,
+                Defense = 20,
+                Intelligence = 5,
+                Class = RPGClass.Knight
+            },
+            new Character{
+                Id = 2,
+                Name = "Stacie",
+                HitPoints = 200,
+                Strength = 5,
+                Defense = 15,
+                Intelligence = 7,
+                Class = RPGClass.Cleric
             }
         };
 
